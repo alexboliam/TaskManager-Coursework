@@ -34,15 +34,10 @@ namespace TaskManager.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("TeamId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("EmployeeId");
 
                     b.HasIndex("Login")
                         .IsUnique();
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("Employees");
                 });
@@ -60,6 +55,21 @@ namespace TaskManager.DAL.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("EmployeeProjects");
+                });
+
+            modelBuilder.Entity("TaskManager.DAL.Models.EmployeeTeam", b =>
+                {
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TeamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("EmployeeId", "TeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("EmployeeTeam");
                 });
 
             modelBuilder.Entity("TaskManager.DAL.Models.Project", b =>
@@ -101,7 +111,7 @@ namespace TaskManager.DAL.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<Guid?>("PanentTaskTaskId")
+                    b.Property<Guid?>("ParentTaskTaskId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Status")
@@ -109,7 +119,7 @@ namespace TaskManager.DAL.Migrations
 
                     b.HasKey("SubtaskId");
 
-                    b.HasIndex("PanentTaskTaskId");
+                    b.HasIndex("ParentTaskTaskId");
 
                     b.ToTable("Subtasks");
                 });
@@ -158,13 +168,6 @@ namespace TaskManager.DAL.Migrations
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("TaskManager.DAL.Models.Employee", b =>
-                {
-                    b.HasOne("TaskManager.DAL.Models.Team", null)
-                        .WithMany("Members")
-                        .HasForeignKey("TeamId");
-                });
-
             modelBuilder.Entity("TaskManager.DAL.Models.EmployeeProject", b =>
                 {
                     b.HasOne("TaskManager.DAL.Models.Employee", "Employee")
@@ -180,6 +183,21 @@ namespace TaskManager.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TaskManager.DAL.Models.EmployeeTeam", b =>
+                {
+                    b.HasOne("TaskManager.DAL.Models.Employee", "Employee")
+                        .WithMany("TeamsWithThisEmployee")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskManager.DAL.Models.Team", "Team")
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TaskManager.DAL.Models.Project", b =>
                 {
                     b.HasOne("TaskManager.DAL.Models.Team", "Team")
@@ -189,9 +207,9 @@ namespace TaskManager.DAL.Migrations
 
             modelBuilder.Entity("TaskManager.DAL.Models.Subtask", b =>
                 {
-                    b.HasOne("TaskManager.DAL.Models.Task", "PanentTask")
+                    b.HasOne("TaskManager.DAL.Models.Task", "ParentTask")
                         .WithMany("Subtasks")
-                        .HasForeignKey("PanentTaskTaskId");
+                        .HasForeignKey("ParentTaskTaskId");
                 });
 
             modelBuilder.Entity("TaskManager.DAL.Models.Task", b =>

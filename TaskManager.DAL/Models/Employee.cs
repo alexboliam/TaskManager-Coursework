@@ -14,5 +14,7 @@ namespace TaskManager.DAL.Models
         [Required]
         public string Password { get; set; }
         public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }
+        public virtual ICollection<EmployeeTeam> TeamsWithThisEmployee { get; set; }
+
     }
 }

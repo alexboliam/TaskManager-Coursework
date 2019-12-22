@@ -8,6 +8,6 @@ namespace TaskManager.BLL.Dtos
     {
         public Guid TeamId { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<EmployeeDto> Members { get; set; }
+        public virtual ICollection<EmployeeTeamDto> TeamMembers { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace TaskManager.BLL.Dtos
         public string Login { get; set; }
         public string Password { get; set; }
         public virtual ICollection<EmployeeProjectDto> EmployeeProjects { get; set; }
+        public virtual ICollection<EmployeeTeamDto> TeamsWithThisEmployee { get; set; }
+
     }
 }

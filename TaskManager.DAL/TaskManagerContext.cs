@@ -15,17 +15,17 @@ namespace TaskManager.DAL
         internal DbSet<Team> Teams { get; set; }
 
 
-        //public TaskManagerContext(DbContextOptions<TaskManagerContext> options) : base(options)
-        //{
-        //    Database.EnsureCreated();
-        //}
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public TaskManagerContext(DbContextOptions<TaskManagerContext> options) : base(options)
         {
-            optionsBuilder.UseLazyLoadingProxies()
-                          .EnableSensitiveDataLogging()
-                          .UseSqlServer("Server=.\\SQLEXPRESS;Database=TaskManagerDb;Trusted_Connection=True;");
+            Database.EnsureCreated();
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseLazyLoadingProxies()
+        //                  .EnableSensitiveDataLogging()
+        //                  .UseSqlServer("Server=.\\SQLEXPRESS;Database=TaskManagerDb;Trusted_Connection=True;");
+        //}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Employee>()
@@ -43,6 +43,19 @@ namespace TaskManager.DAL
                     .HasOne(ss => ss.Project)
                     .WithMany(s => s.ProjectAdministrators)
                     .HasForeignKey(ss => ss.ProjectId);
+
+
+            builder.Entity<EmployeeTeam>().HasKey(s => new { s.EmployeeId, s.TeamId });
+
+            builder.Entity<EmployeeTeam>()
+                    .HasOne(ss => ss.Employee)
+                    .WithMany(s => s.TeamsWithThisEmployee)
+                    .HasForeignKey(ss => ss.EmployeeId);
+
+            builder.Entity<EmployeeTeam>()
+                    .HasOne(ss => ss.Team)
+                    .WithMany(s => s.TeamMembers)
+                    .HasForeignKey(ss => ss.TeamId);
         }
     }
 }

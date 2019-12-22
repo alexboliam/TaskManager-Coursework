@@ -12,6 +12,6 @@ namespace TaskManager.DAL.Models
         [MaxLength(1000, ErrorMessage = "Max length of subtask is 1000 chars")]
         public string Name { get; set; }
         public bool Status { get; set; }
-        public virtual Task PanentTask { get; set; }
+        public virtual Task ParentTask { get; set; }
     }
 }

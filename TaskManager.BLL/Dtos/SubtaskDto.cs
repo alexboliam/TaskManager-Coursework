@@ -10,6 +10,6 @@ namespace TaskManager.BLL.Dtos
         public Guid SubtaskId { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
-        public virtual TaskDto PanentTask { get; set; }
+        public virtual TaskDto ParentTask { get; set; }
     }
 }
