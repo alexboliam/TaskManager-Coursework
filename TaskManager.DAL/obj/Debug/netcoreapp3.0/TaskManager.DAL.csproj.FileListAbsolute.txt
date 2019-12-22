@@ -1,0 +1,10 @@
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\bin\Debug\netcoreapp3.0\TaskManager.DAL.deps.json
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\bin\Debug\netcoreapp3.0\TaskManager.DAL.dll
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\obj\Debug\netcoreapp3.0\TaskManager.DAL.csprojAssemblyReference.cache
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\obj\Debug\netcoreapp3.0\TaskManager.DAL.AssemblyInfoInputs.cache
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\obj\Debug\netcoreapp3.0\TaskManager.DAL.AssemblyInfo.cs
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\bin\Debug\netcoreapp3.0\TaskManager.DAL.runtimeconfig.json
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\bin\Debug\netcoreapp3.0\TaskManager.DAL.runtimeconfig.dev.json
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\bin\Debug\netcoreapp3.0\TaskManager.DAL.pdb
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\obj\Debug\netcoreapp3.0\TaskManager.DAL.dll
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.DAL\obj\Debug\netcoreapp3.0\TaskManager.DAL.pdb

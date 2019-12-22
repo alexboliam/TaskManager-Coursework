@@ -1,0 +1,11 @@
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.csprojAssemblyReference.cache
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.AssemblyInfoInputs.cache
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.AssemblyInfo.cs
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\bin\Debug\netcoreapp3.0\TaskManager.BLL.deps.json
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\bin\Debug\netcoreapp3.0\TaskManager.BLL.dll
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\bin\Debug\netcoreapp3.0\TaskManager.BLL.pdb
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\bin\Debug\netcoreapp3.0\TaskManager.DAL.dll
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\bin\Debug\netcoreapp3.0\TaskManager.DAL.pdb
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.csproj.CopyComplete
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.dll
+D:\KPI\3 курс\CourseWork\TaskManager\TaskManager.BLL\obj\Debug\netcoreapp3.0\TaskManager.BLL.pdb
