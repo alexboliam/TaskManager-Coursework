@@ -12,7 +12,7 @@ namespace TaskManager.BLL.Dtos
         public DateTime Deadline { get; set; }
         public virtual StatusDto Status { get; set; }
         public virtual TeamDto Team { get; set; }
-        public virtual ICollection<TaskDto> Tasks { get; set; }
-        public virtual ICollection<EmployeeProjectDto> ProjectAdministrators { get; set; }
+        public virtual IEnumerable<TaskDto> Tasks { get; set; }
+        public virtual IEnumerable<EmployeeProjectDto> ProjectAdministrators { get; set; }
     }
 }

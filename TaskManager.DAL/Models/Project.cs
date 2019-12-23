@@ -12,7 +12,7 @@ namespace TaskManager.DAL.Models
         public DateTime Deadline { get; set; }
         public virtual Status Status { get; set; }
         public virtual Team Team { get; set; }
-        public virtual ICollection<Task> Tasks { get; set; }
-        public virtual ICollection<EmployeeProject> ProjectAdministrators { get; set; }
+        public virtual IEnumerable<Task> Tasks { get; set; }
+        public virtual IEnumerable<EmployeeProject> ProjectAdministrators { get; set; }
     }
 }

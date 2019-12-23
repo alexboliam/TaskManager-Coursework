@@ -10,9 +10,9 @@ namespace TaskManager.PL.Models
         public string Name { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime Deadline { get; set; }
-        public virtual StatusResponse Status { get; set; }
-        public virtual TeamResponse Team { get; set; }
-        public virtual ICollection<TaskResponse> Tasks { get; set; }
-        public virtual ICollection<EmployeeProjectResponse> ProjectAdministrators { get; set; }
+        public StatusResponse Status { get; set; }
+        public TeamResponse Team { get; set; }
+        public IEnumerable<TaskResponse> Tasks { get; set; }
+        public IEnumerable<EmployeeProjectResponse> ProjectAdministrators { get; set; }
     }
 }

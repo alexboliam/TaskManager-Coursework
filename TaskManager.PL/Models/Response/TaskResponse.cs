@@ -9,7 +9,7 @@ namespace TaskManager.PL.Models
         public Guid TaskId { get; set; }
         public string Name { get; set; }
         public virtual StatusResponse Status { get; set; }
-        public virtual EmployeeResponse CreatedBy { get; set; }
+        public string LoginOfCreatedBy { get; set; }
         public DateTime Deadline { get; set; }
         public virtual ICollection<SubtaskResponse> Subtasks { get; set; }
     }

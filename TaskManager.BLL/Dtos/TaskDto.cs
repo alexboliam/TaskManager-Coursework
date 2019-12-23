@@ -11,6 +11,6 @@ namespace TaskManager.BLL.Dtos
         public virtual StatusDto Status { get; set; }
         public virtual EmployeeDto CreatedBy { get; set; }
         public DateTime Deadline { get; set; }
-        public virtual ICollection<SubtaskDto> Subtasks { get; set; }
+        public virtual IEnumerable<SubtaskDto> Subtasks { get; set; }
     }
 }

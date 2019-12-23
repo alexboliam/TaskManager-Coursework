@@ -36,7 +36,7 @@ namespace TaskManager.DAL
 
             builder.Entity<EmployeeProject>()
                     .HasOne(ss => ss.Employee)
-                    .WithMany(s => s.EmployeeProjects)
+                    .WithMany(s => s.AdminAtProjects)
                     .HasForeignKey(ss => ss.EmployeeId);
 
             builder.Entity<EmployeeProject>()

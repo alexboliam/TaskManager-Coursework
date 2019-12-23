@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TaskManager.BLL.Dtos;
 using TaskManager.BLL.Interfaces;
 using TaskManager.DAL.Interfaces;
@@ -38,7 +37,7 @@ namespace TaskManager.BLL.Services
                 return false;
             }
 
-            project.Tasks.Add(newTask);
+            project.Tasks.ToList().Add(newTask);
             unit.Save();
             return true;
         }
@@ -90,7 +89,7 @@ namespace TaskManager.BLL.Services
             newSubtask.Status = false;
             newSubtask.ParentTask = task;
 
-            task.Subtasks.Add(newSubtask);
+            task.Subtasks.ToList().Add(newSubtask);
             unit.Save();
             return true;
         }

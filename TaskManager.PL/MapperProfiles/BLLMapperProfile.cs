@@ -8,14 +8,15 @@ namespace TaskManager.PL.MapperProfiles
     {
         public BLLMapperProfile()
         {
-            CreateMap<Employee, EmployeeDto>().ReverseMap();
-            CreateMap<Project, ProjectDto>().ReverseMap();
-            CreateMap<Task, TaskDto>().ReverseMap();
-            CreateMap<Subtask, SubtaskDto>().ReverseMap();
+            CreateMap<Employee, EmployeeDto>().ReverseMap().PreserveReferences();
+            CreateMap<Project, ProjectDto>().ReverseMap().PreserveReferences();
+            CreateMap<Task, TaskDto>().ReverseMap().PreserveReferences();
+            CreateMap<Subtask, SubtaskDto>().ReverseMap().PreserveReferences();
             CreateMap<Status, StatusDto>().ReverseMap();
-            CreateMap<Employee, EmployeeDto>().ReverseMap();
-            CreateMap<EmployeeProject, EmployeeProjectDto>().ReverseMap();
-            CreateMap<Team, TeamDto>().ReverseMap();
+            CreateMap<EmployeeTeam, EmployeeTeamDto>().ReverseMap().PreserveReferences();
+            CreateMap<EmployeeProject, EmployeeProjectDto>().ReverseMap().PreserveReferences();
+            CreateMap<Team, TeamDto>().ReverseMap().PreserveReferences();
+            
         }
     }
 }

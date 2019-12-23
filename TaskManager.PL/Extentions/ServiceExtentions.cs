@@ -26,6 +26,8 @@ namespace TaskManager.PL.Extentions
         public static void ConfigureBLLServices(this IServiceCollection services)
         {
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IProjectService, ProjectService>();
+
         }
 
         public static void ConfigureCors(this IServiceCollection services)

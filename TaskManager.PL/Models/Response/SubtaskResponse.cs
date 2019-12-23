@@ -10,6 +10,5 @@ namespace TaskManager.PL.Models
         public Guid SubtaskId { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
-        public virtual TaskResponse ParentTask { get; set; }
     }
 }
