@@ -75,9 +75,5 @@ namespace TaskManager.BLL.Services
             return mapper.Map<EmployeeDto>(emp);
         }
 
-        public bool RemoveFromTask(EmployeeTaskDto employeeTask)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

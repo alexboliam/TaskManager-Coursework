@@ -12,7 +12,6 @@ namespace TaskManager.BLL.Interfaces
         bool DeleteFromTeam(EmployeeTeamDto employeeTeam);
         bool AddToTask(EmployeeTaskDto employeeTask);
         bool DeleteFromTask(EmployeeTaskDto employeeTask);
-        bool RemoveFromTask(EmployeeTaskDto employeeTask);
 
     }
 }
