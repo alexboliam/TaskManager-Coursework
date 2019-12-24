@@ -8,6 +8,6 @@ namespace TaskManager.DAL.Models
     {
         public Guid TeamId { get; set; }
         public string Name { get; set; }
-        public virtual IEnumerable<EmployeeTeam> TeamMembers { get; set; }
+        public virtual ICollection<EmployeeTeam> TeamMembers { get; set; }
     }
 }

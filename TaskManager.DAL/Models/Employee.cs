@@ -13,9 +13,8 @@ namespace TaskManager.DAL.Models
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        public virtual IEnumerable<EmployeeProject> AdminAtProjects { get; set; } // TODO: RENAME TO PROJECTS WHERE EMPLOYEE IS ADMIN
-        public virtual IEnumerable<EmployeeTeam> TeamsWithThisEmployee { get; set; }
-        public virtual IEnumerable<EmployeeTask> TasksFromEmployee { get; set; }
+        public virtual ICollection<EmployeeTeam> TeamsWithThisEmployee { get; set; }
+        public virtual ICollection<EmployeeTask> TasksFromEmployee { get; set; }
 
 
     }

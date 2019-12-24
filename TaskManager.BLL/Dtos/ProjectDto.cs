@@ -10,9 +10,9 @@ namespace TaskManager.BLL.Dtos
         public string Name { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime Deadline { get; set; }
+        public string CreatedByLogin { get; set; }
         public virtual StatusDto Status { get; set; }
         public virtual TeamDto Team { get; set; }
-        public virtual IEnumerable<TaskDto> Tasks { get; set; }
-        public virtual IEnumerable<EmployeeProjectDto> ProjectAdministrators { get; set; }
+        public virtual ICollection<TaskDto> Tasks { get; set; }
     }
 }

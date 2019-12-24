@@ -1,7 +1,8 @@
 <div>
-  <router-outlet></router-outlet>
-  <!-- <app-auth-page></app-auth-page> -->
-  <!-- <app-my-dashboard (select)="onSelect($event)"></app-my-dashboard>
-  <app-project-board [projectId]="selectedProjectId"
-  ></app-project-board> -->
+  <div *ngIf="isAuthorized">
+    <app-auth-page></app-auth-page>
+  </div>
+  <div *ngIf="isAuthorized">
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -1,15 +1,58 @@
 <div>
-    <nav class="navbar navbar-default fixed-top custom-nav">
+    <nav class="navbar navbar-default custom-nav">
         <a class="navbar-brand mx-auto navbar-label" href="">Task Manager</a>
     </nav>
-    <div class="container maindiv">
+
+    <div *ngIf="showMode==1" class="pop-up-container" (click)="onHideClick()" >
+        <div class="pop-up form-group"
+            (click)="onFormClick($event)" style="overflow: auto;">
+            <!-- Title-->
+            <label style="margin-left: 15px;margin-top: 15px; font-weight:bold; font-size: 32px;">Title of project</label> <br>
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-font fa-lg" style="margin-top: 15px;"></i>
+                <input type="text" class="myArea myArea-title"
+                    [(ngModel)]="newProject.name" placeholder="Enter title of project">
+            </div>
+            <hr>
+            <!-- Deadline -->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-calendar fa-lg" style="margin-top: 15px;"></i>
+                <div style="display: flex; flex-direction: column; background-color: white;">
+                    <label style="margin-left: 15px;margin-top: 15px; font-weight:bold; font-size: 18px;">Date of finishing</label><br />
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="newProject.deadline" placeholder="Choose a deadline">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            </div>
+            <hr>
+            <!-- Description -->
+            <p style="text-align: center;">Members of project could be invited after creation.</p>
+            <hr>
+            <!-- Buttons-->
+            <br>
+            <div class="btn-container" style="background-color: white;">
+                <button class="btn btn-primary"
+                    (click)="onProjCreate()">Create</button>
+                <button class="btn btn-secondary" (click)="onHideClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main projects layout -->
+    <div class="maindiv">
         <div class="dashboards" style="overflow-x:auto">
             <i class="fa fa-user fa-lg"></i>
             <label class="proj-label">Created projects</label>
-            <div *ngIf="projectsList">
-                <div *ngFor="let proj of myProjectsList"
+            <div *ngIf="projectsList" >
+                <div *ngFor="let proj of myProjects"
                     class="tdAdmins">
-                    <button class="mybutton btn" (click)="goToProject(proj.projectId)">{{ proj.name }} {{status(proj.status)}}</button>
+                    <button class="mybutton btn" (click)="goToProject(proj.projectId)"> 
+                        <p class="projName">{{ proj.name }}</p> 
+                        <br><hr>
+                        <p class="status">{{status(proj.status)}}</p>
+                    </button>
                 </div>
                 <div class="tdAdmins">
                     <button class="mybutton myButton2 btn" (click)="createProject()"><i class="fa fa-plus fa-fw"></i></button>
@@ -19,10 +62,13 @@
             <i class="fa fa-briefcase fa-lg"></i>
             <label class="proj-label">In-work projects</label>
             <div *ngIf="projectsList">
-
-                <div *ngFor="let proj of projectsList"
+                <div *ngFor="let proj of otherProjects"
                     class="tdAdmins">
-                    <button class="mybutton btn" (click)="goToProject(proj.projectId)"> <p class="projName">{{ proj.name }}</p> <br><hr><p class="status">{{status(proj.status)}}</p></button>
+                    <button class="mybutton btn" (click)="goToProject(proj.projectId)"> 
+                        <p class="projName">{{ proj.name }}</p> 
+                        <br><hr>
+                        <p class="status">{{status(proj.status)}}</p>
+                    </button>
                 </div>
 
             </div>

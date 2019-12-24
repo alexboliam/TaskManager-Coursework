@@ -9,7 +9,6 @@ namespace TaskManager.DAL
     {
         internal DbSet<Project> Projects { get; set; }
         internal DbSet<Employee> Employees { get; set; }
-        internal DbSet<EmployeeProject> EmployeeProjects { get; set; }
         internal DbSet<Subtask> Subtasks { get; set; }
         internal DbSet<Task> Tasks { get; set; }
         internal DbSet<Team> Teams { get; set; }
@@ -33,18 +32,6 @@ namespace TaskManager.DAL
             builder.Entity<Employee>()
                     .HasIndex(u => u.Login)
                     .IsUnique();
-
-            builder.Entity<EmployeeProject>().HasKey(s=> new { s.EmployeeId, s.ProjectId });
-
-            builder.Entity<EmployeeProject>()
-                    .HasOne(ss => ss.Employee)
-                    .WithMany(s => s.AdminAtProjects)
-                    .HasForeignKey(ss => ss.EmployeeId);
-
-            builder.Entity<EmployeeProject>()
-                    .HasOne(ss => ss.Project)
-                    .WithMany(s => s.ProjectAdministrators)
-                    .HasForeignKey(ss => ss.ProjectId);
 
 
             builder.Entity<EmployeeTeam>().HasKey(s => new { s.EmployeeId, s.TeamId });

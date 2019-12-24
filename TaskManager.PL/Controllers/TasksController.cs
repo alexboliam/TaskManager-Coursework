@@ -150,7 +150,7 @@ namespace TaskManager.PL.Controllers
 
                 if (workers != null)
                 {
-                    return Ok(mapper.Map<IEnumerable<EmployeeTaskResponse>>(workers));
+                    return Ok(mapper.Map<ICollection<EmployeeTaskResponse>>(workers));
                 }
                 else
                 {

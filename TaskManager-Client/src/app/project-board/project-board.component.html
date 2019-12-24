@@ -1,6 +1,6 @@
 <div>
     <nav class="navbar navbar-light" style="background-color: #6d13d3;">
-        <a class="navbar-brand mb-0 h1" style="color:aliceblue">
+        <a class="navbar-brand mb-0 h1" style="color:aliceblue" href="http://localhost:4200/myprojects/">
             <img src="../../assets/icon.png" class="d-inline-block align-top" height="32px" width="32px"> Task Manager</a>
     </nav>
     <!-- Show/edit task pop-up -->
@@ -8,6 +8,7 @@
         <div class="pop-up form-group"
             (click)="onFormClick($event)" style="overflow: auto;">
             <!-- Title-->
+            <p style="float: right; font-style: italic; font-size: 16px; margin:0px;">Created by {{shownTask.loginOfCreatedBy}}</p>
             <div style="display: inline-flex; flex-direction: row; background-color: white;">
                 <i class="fa fa-font fa-lg" style="margin-top: 15px;"></i>
                 <textarea type="text" class="myArea"
@@ -78,11 +79,13 @@
             <hr>
             <!-- Buttons-->
             <br>
-            <div class="btn-container">
+            <div class="btn-container" style="background-color: white;">
                 <button class="btn btn-primary"
                     (click)="onOk()">Ok</button>
                 <button class="btn btn-secondary" (click)="onHideClick()">Back</button>
             </div>
+            <button style="float:right;max-height: 30px; max-width: 10px; font-size: 16px; padding:0px 16px 16px 8px; margin:0px;" 
+                                    class="btn btn-danger" (click)="deleteTask()">X</button> 
         </div>
     </div>
     <!-- Create task pop-up -->
@@ -135,7 +138,7 @@
     </div>
     
     <!-- Main dashboard layout -->
-    <div style="background-color: grey" style="width: 100%;">
+    <div style="background-color: grey" style="width: 100%; overflow: auto;">
         <!-- Section with columns -->
         <section class="tasksSection">
             <!-- New column-->
@@ -148,10 +151,10 @@
                             class="taskfields">
                             <button class="mybutton btn" (click)="openTask(task.taskId)">
                                 <p class="taskname">{{ task.name }}</p> 
-                                <br> 
+                                <hr class="upHr">
                                 <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
-                                <br> 
-                                <p class="taskstatus">{{status(task.status)}}</p> 
+                                <hr class="botHr">
+                                <p class="taskstatus">{{status(task.status)}}</p>
                             </button>
                         </div>
                     </div>
@@ -170,9 +173,9 @@
                             class="taskfields">
                             <button class="mybutton btn" (click)="openTask(task.taskId)">
                                 <p class="taskname">{{ task.name }}</p> 
-                                <br> 
+                                <hr class="upHr"> 
                                 <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
-                                <br> 
+                                <hr class="botHr"> 
                                 <p class="taskstatus">{{status(task.status)}}</p> 
                             </button>
                         </div>
@@ -188,9 +191,9 @@
                         <div *ngFor="let task of doneTasks" class="taskfields">
                             <button class="mybutton btn" (click)="openTask(task.taskId)">
                                 <p class="taskname">{{ task.name }}</p> 
-                                <br> 
+                                <hr class="upHr"> 
                                 <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
-                                <br> 
+                                <hr class="botHr"> 
                                 <p class="taskstatus">{{status(task.status)}}</p> 
                             </button>
                         </div>
@@ -207,9 +210,9 @@
                             class="taskfields">
                             <button class="mybutton btn" (click)="openTask(task.taskId)">
                                 <p class="taskname">{{ task.name }}</p> 
-                                <br> 
+                                <hr class="upHr"> 
                                 <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
-                                <br> 
+                                <hr class="botHr"> 
                                 <p class="taskstatus">{{status(task.status)}}</p> 
                             </button>
                         </div>

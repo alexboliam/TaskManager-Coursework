@@ -7,8 +7,12 @@ namespace TaskManager.BLL.Interfaces
 {
     public interface IProjectService
     {
-        IEnumerable<ProjectDto> GetProjectsByEmployeeLogin(string login);
+        ICollection<ProjectDto> GetProjectsByEmployeeLogin(string login);
         ProjectDto GetProjectByProjectId(Guid projectId);
         TeamDto GetTeamByProjectId(Guid projectId);
+
+        bool CreateProject(ProjectDto project);
+        void UpdateProjectStatuses(ProjectDto project);
+
     }
 }

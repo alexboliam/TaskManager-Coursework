@@ -29,14 +29,14 @@ namespace TaskManager.DAL.Repositories
             this.context.Set<T>().Remove(value);
         }
 
-        public IEnumerable<T> FindAll()
+        public ICollection<T> FindAll()
         {
-            return this.context.Set<T>();
+            return this.context.Set<T>().ToList();
         }
 
-        public IEnumerable<T> FindByCondition(Expression<Func<T, bool>> expression)
+        public ICollection<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
-            return this.context.Set<T>().Where(expression);
+            return this.context.Set<T>().Where(expression).ToList();
         }
 
         

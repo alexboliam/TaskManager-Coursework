@@ -12,7 +12,7 @@ namespace TaskManager.PL.Models
         public virtual StatusResponse Status { get; set; }
         public string LoginOfCreatedBy { get; set; }
         public DateTime Deadline { get; set; }
-        public virtual IEnumerable<EmployeeTaskResponse> EmployeesOnTask { get; set; }
+        public virtual ICollection<EmployeeTaskResponse> EmployeesOnTask { get; set; }
         public virtual ICollection<SubtaskResponse> Subtasks { get; set; }
     }
 }

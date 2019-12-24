@@ -3,5 +3,6 @@ export interface Project {
     name: string,
     dateCreation: Date,
     deadline: Date,
+    createdByLogin: string,
     status: number
 }

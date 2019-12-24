@@ -9,7 +9,8 @@ namespace TaskManager.PL.MapperProfiles
         public PLMapperProfile()
         {
             CreateMap<EmployeeDto, EmployeeResponse>().ReverseMap();
-            CreateMap<ProjectDto, ProjectResponse>().ReverseMap();
+            CreateMap<ProjectDto, ProjectResponse>();
+            CreateMap<ProjectRequest, ProjectDto>();
             CreateMap<TaskRequest, TaskDto>()
                      .ForPath(dto => dto.CreatedBy.Login, l => l.MapFrom(r => r.LoginOfCreatedBy));
             CreateMap<TaskDto, TaskResponse>()
@@ -25,7 +26,6 @@ namespace TaskManager.PL.MapperProfiles
             CreateMap<EmployeeTaskRequest, EmployeeTaskDto>()
                      .ForPath(x => x.Employee.EmployeeId, y => y.MapFrom(z => z.EmployeeId))
                      .ForPath(x => x.Task.TaskId, y => y.MapFrom(z => z.TaskId));
-            CreateMap<EmployeeProjectDto, EmployeeProjectResponse>().ReverseMap();
             CreateMap<TeamDto, TeamResponse>();
             CreateMap<TeamRequest, TeamDto>();
 

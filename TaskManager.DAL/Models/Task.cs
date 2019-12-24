@@ -13,7 +13,7 @@ namespace TaskManager.DAL.Models
         public virtual Status Status { get; set; }
         public virtual Employee CreatedBy { get; set; }
         public DateTime Deadline { get; set; }
-        public virtual IEnumerable<EmployeeTask> EmployeesOnTask { get; set; }
-        public virtual IEnumerable<Subtask> Subtasks { get; set; }
+        public virtual ICollection<EmployeeTask> EmployeesOnTask { get; set; }
+        public virtual ICollection<Subtask> Subtasks { get; set; }
     }
 }

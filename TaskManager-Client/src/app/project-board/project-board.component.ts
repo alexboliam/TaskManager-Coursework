@@ -68,6 +68,7 @@ export class ProjectBoardComponent implements OnInit {
     this.newTask.status = 0;
     this.newTask.loginOfCreatedBy = "";
     this.newTask.deadline = new Date();
+    this.newTask.deadline.setDate(this.newTask.deadline.getDate()+1);
     this.newTask.employeesOnTask = null;
   }
   private load(projectId: string) {
@@ -81,6 +82,10 @@ export class ProjectBoardComponent implements OnInit {
           if(element.deadline < this.currDate && element.status!=2)
           {
             element.status = 3;
+          }
+          if(element.deadline > this.currDate && element.status==3)
+          {
+            element.status = 1;
           }
         }); 
 
@@ -210,13 +215,13 @@ export class ProjectBoardComponent implements OnInit {
           this.load(this.route.snapshot.paramMap.get('id'));
         },
         error=>{
-          if(<HttpErrorResponse>error.status+"" == "401"){
+          if(<HttpErrorResponse>error.status+"" == "201"){
             this.Error = "Task was created.";
             this.addMemberValid = false;
           }
           if(<HttpErrorResponse>error.status+"" == "500"){
             console.log(<HttpErrorResponse>error);
-            this.Error = "Internal server error.";
+            this.Error = "  Internal server error.";
             this.addMemberValid = false;
           }
           this.load(this.route.snapshot.paramMap.get('id'));
@@ -313,6 +318,27 @@ export class ProjectBoardComponent implements OnInit {
               this.load(this.route.snapshot.paramMap.get('id'));
           });
 
+  }
+  public deleteTask(){
+    let task: Task = this.tasks.find(x=>x.taskId==this.shownTask.taskId);
+    
+    this.httpClient.request('delete', 'api/tasks/' + this.shownTask.taskId, {body: task} )
+    .subscribe(
+      success=>{
+        console.log("deleted");
+        this.load(this.route.snapshot.paramMap.get('id'));
+    },
+      error=>{
+        if(<HttpErrorResponse>error.status +"" == "204")
+        {
+          console.log("deleted");
+        }
+        if(<HttpErrorResponse>error.status+"" == "500")
+        {
+          console.log(error);
+        }
+    });
+    this.onHideClick();
   }
   public addMember()
   {

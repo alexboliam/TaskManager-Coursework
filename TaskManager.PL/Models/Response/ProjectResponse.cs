@@ -10,9 +10,7 @@ namespace TaskManager.PL.Models
         public string Name { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime Deadline { get; set; }
+        public string CreatedByLogin { get; set; }
         public StatusResponse Status { get; set; }
-        //public TeamResponse Team { get; set; }
-        //public IEnumerable<TaskResponse> Tasks { get; set; }
-        //public IEnumerable<EmployeeProjectResponse> ProjectAdministrators { get; set; }
     }
 }

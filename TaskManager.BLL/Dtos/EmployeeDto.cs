@@ -10,9 +10,8 @@ namespace TaskManager.BLL.Dtos
         public Guid EmployeeId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public virtual IEnumerable<EmployeeProjectDto> AdminAtProjects { get; set; }
-        public virtual IEnumerable<EmployeeTeamDto> TeamsWithThisEmployee { get; set; }
-        public virtual IEnumerable<EmployeeTaskDto> TasksFromEmployee { get; set; }
+        public virtual ICollection<EmployeeTeamDto> TeamsWithThisEmployee { get; set; }
+        public virtual ICollection<EmployeeTaskDto> TasksFromEmployee { get; set; }
 
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManager.BLL.Dtos;
 using TaskManager.BLL.Interfaces;
 using TaskManager.PL.Models;
 
@@ -53,7 +54,7 @@ namespace TaskManager.PL.Controllers
 
                 if (projects != null)
                 {
-                    return Ok(mapper.Map<IEnumerable<ProjectResponse>>(projects));
+                    return Ok(mapper.Map<ICollection<ProjectResponse>>(projects));
                 }
                 else
                 {
@@ -87,6 +88,28 @@ namespace TaskManager.PL.Controllers
                 return StatusCode(500, "Internal server error. " + ex.Message);
             }
         }
-        
+
+        [HttpPost()]
+        public IActionResult CreateProject([FromBody] ProjectRequest project)
+        {
+            try
+            {
+                var created = projectService.CreateProject(mapper.Map<ProjectDto>(project));
+
+                if (created != false)
+                {
+                    return StatusCode(201);
+                }
+                else
+                {
+                    return StatusCode(404, "Something not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. " + ex.Message);
+            }
+        }
+
     }
 }

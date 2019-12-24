@@ -7,18 +7,23 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
+  
   title = 'Task Manager';
 
-  public selectedProjectId: string;
+  public isAuthorized: boolean;
 
   constructor(httpClient: HttpClient,
               private router: Router,
               private route: ActivatedRoute) {
 
   }
-
-  public onSelect(projectId: string) {
-      this.selectedProjectId = projectId;
+  ngOnInit(): void {
+    this.isAuthorized = false;
+    let check = localStorage.getItem('login');
+    if(check != null)
+    {
+      this.isAuthorized = true;
+    }
   }
 }

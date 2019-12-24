@@ -59,7 +59,14 @@ div{
     margin:0px;
     padding:0px;
 }
-
+.upHr{
+    margin-top:10px; 
+    margin-bottom:10px;
+}
+.botHr{
+    margin-top:20px; 
+    margin-bottom:5px;
+}
 .createTask{
     background-color: rgba(82, 115, 126, 0.726);
 }

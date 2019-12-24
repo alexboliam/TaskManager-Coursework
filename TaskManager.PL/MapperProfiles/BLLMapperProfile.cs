@@ -15,7 +15,6 @@ namespace TaskManager.PL.MapperProfiles
             CreateMap<Status, StatusDto>().ReverseMap();
             CreateMap<EmployeeTeam, EmployeeTeamDto>().ReverseMap().PreserveReferences();
             CreateMap<EmployeeTask, EmployeeTaskDto>().ReverseMap().PreserveReferences();
-            CreateMap<EmployeeProject, EmployeeProjectDto>().ReverseMap().PreserveReferences();
             CreateMap<Team, TeamDto>().ReverseMap().PreserveReferences();
             
         }

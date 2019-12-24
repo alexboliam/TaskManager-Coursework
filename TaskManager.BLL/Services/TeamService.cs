@@ -40,7 +40,7 @@ namespace TaskManager.BLL.Services
             }
 
             updTeam.Name = team.Name;
-            updTeam.TeamMembers = mapper.Map<IEnumerable<EmployeeTeam>>(team.TeamMembers);
+            updTeam.TeamMembers = mapper.Map<ICollection<EmployeeTeam>>(team.TeamMembers);
 
             unit.Teams.Update(updTeam);
             unit.Save();
