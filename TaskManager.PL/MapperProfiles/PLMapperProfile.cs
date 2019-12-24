@@ -17,9 +17,18 @@ namespace TaskManager.PL.MapperProfiles
             CreateMap<SubtaskRequest, SubtaskDto>()
                      .ForPath(dto => dto.ParentTask.TaskId, rq => rq.MapFrom(r => r.ParentTaskId));
             CreateMap<StatusDto, StatusResponse>().ReverseMap();
-            CreateMap<EmployeeTeamDto, EmployeeTeamResponse>().ReverseMap();
+            CreateMap<EmployeeTeamDto, EmployeeTeamResponse>();
+            CreateMap<EmployeeTeamRequest, EmployeeTeamDto>()
+                     .ForPath(x => x.Employee.EmployeeId, y => y.MapFrom(z => z.EmployeeId))
+                     .ForPath(x => x.Team.TeamId, y => y.MapFrom(z => z.TeamId));
+            CreateMap<EmployeeTaskDto, EmployeeTaskResponse>();
+            CreateMap<EmployeeTaskRequest, EmployeeTaskDto>()
+                     .ForPath(x => x.Employee.EmployeeId, y => y.MapFrom(z => z.EmployeeId))
+                     .ForPath(x => x.Task.TaskId, y => y.MapFrom(z => z.TaskId));
             CreateMap<EmployeeProjectDto, EmployeeProjectResponse>().ReverseMap();
-            CreateMap<TeamDto, TeamResponse>().ReverseMap();
+            CreateMap<TeamDto, TeamResponse>();
+            CreateMap<TeamRequest, TeamDto>();
+
         }
     }
 }

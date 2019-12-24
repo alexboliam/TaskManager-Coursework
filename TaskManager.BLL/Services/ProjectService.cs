@@ -31,5 +31,25 @@ namespace TaskManager.BLL.Services
             var projects = unit.Projects.FindByCondition(p => p.Team.TeamMembers.Any(x => x.Employee.Equals(employee))).ToList();
             return mapper.Map<IEnumerable<ProjectDto>>(projects);
         }
+        public ProjectDto GetProjectByProjectId(Guid projectId)
+        {
+            var project = unit.Projects.FindByCondition(x => x.ProjectId.Equals(projectId)).FirstOrDefault();
+            if (project == null)
+            {
+                return null;
+            }
+
+            return mapper.Map<ProjectDto>(project);
+        }
+        public TeamDto GetTeamByProjectId(Guid projectId)
+        {
+            var team = unit.Projects.FindByCondition(x => x.ProjectId.Equals(projectId)).FirstOrDefault().Team;
+            if (team == null)
+            {
+                return null;
+            }
+
+            return mapper.Map<TeamDto>(team);
+        }
     }
 }

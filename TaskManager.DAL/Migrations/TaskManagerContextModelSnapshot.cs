@@ -57,6 +57,21 @@ namespace TaskManager.DAL.Migrations
                     b.ToTable("EmployeeProjects");
                 });
 
+            modelBuilder.Entity("TaskManager.DAL.Models.EmployeeTask", b =>
+                {
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("EmployeeId", "TaskId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("EmployeeTasks");
+                });
+
             modelBuilder.Entity("TaskManager.DAL.Models.EmployeeTeam", b =>
                 {
                     b.Property<Guid>("EmployeeId")
@@ -69,7 +84,7 @@ namespace TaskManager.DAL.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("EmployeeTeam");
+                    b.ToTable("EmployeeTeams");
                 });
 
             modelBuilder.Entity("TaskManager.DAL.Models.Project", b =>
@@ -136,6 +151,9 @@ namespace TaskManager.DAL.Migrations
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -179,6 +197,21 @@ namespace TaskManager.DAL.Migrations
                     b.HasOne("TaskManager.DAL.Models.Project", "Project")
                         .WithMany("ProjectAdministrators")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TaskManager.DAL.Models.EmployeeTask", b =>
+                {
+                    b.HasOne("TaskManager.DAL.Models.Employee", "Employee")
+                        .WithMany("TasksFromEmployee")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TaskManager.DAL.Models.Task", "Task")
+                        .WithMany("EmployeesOnTask")
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

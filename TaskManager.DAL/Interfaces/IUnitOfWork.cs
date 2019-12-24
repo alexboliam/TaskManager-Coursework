@@ -9,6 +9,9 @@ namespace TaskManager.DAL.Interfaces
         ITaskRepository Tasks { get; }
         ISubtaskRepository Subtasks { get; }
         ITeamRepository Teams { get; }
+        IEmployeeTeamsRepository EmployeeTeams { get; }
+        IEmployeeTasksRepository EmployeeTasks { get; }
+
         void Save();
     }
 }

@@ -13,6 +13,8 @@ namespace TaskManager.DAL
         internal DbSet<Subtask> Subtasks { get; set; }
         internal DbSet<Task> Tasks { get; set; }
         internal DbSet<Team> Teams { get; set; }
+        internal DbSet<EmployeeTeam> EmployeeTeams { get; set; }
+        internal DbSet<EmployeeTask> EmployeeTasks { get; set; }
 
 
         public TaskManagerContext(DbContextOptions<TaskManagerContext> options) : base(options)
@@ -56,6 +58,18 @@ namespace TaskManager.DAL
                     .HasOne(ss => ss.Team)
                     .WithMany(s => s.TeamMembers)
                     .HasForeignKey(ss => ss.TeamId);
+
+            builder.Entity<EmployeeTask>().HasKey(s => new { s.EmployeeId, s.TaskId });
+
+            builder.Entity<EmployeeTask>()
+                    .HasOne(ss => ss.Employee)
+                    .WithMany(s => s.TasksFromEmployee)
+                    .HasForeignKey(ss => ss.EmployeeId);
+
+            builder.Entity<EmployeeTask>()
+                    .HasOne(ss => ss.Task)
+                    .WithMany(s => s.EmployeesOnTask)
+                    .HasForeignKey(ss => ss.TaskId);
         }
     }
 }

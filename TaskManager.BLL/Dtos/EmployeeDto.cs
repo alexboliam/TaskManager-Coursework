@@ -12,6 +12,7 @@ namespace TaskManager.BLL.Dtos
         public string Password { get; set; }
         public virtual IEnumerable<EmployeeProjectDto> AdminAtProjects { get; set; }
         public virtual IEnumerable<EmployeeTeamDto> TeamsWithThisEmployee { get; set; }
+        public virtual IEnumerable<EmployeeTaskDto> TasksFromEmployee { get; set; }
 
     }
 }

@@ -1,0 +1,120 @@
+div{
+    background-color: #f5f5f5;
+}
+.tasksSection{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin-top: 3%;
+    min-width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.taskColumn{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    border: 1px solid rgba(131, 131, 131, 0.5);
+    border-radius: 4px;
+    min-width: 140px;
+    max-width: 250px;
+    background-color: white;
+    text-align: center;
+    
+}
+.taskList{
+    background-color: #ffffff;
+    padding-top: 10px;
+}
+.taskfields{
+    background-color: #ffffff;
+}
+.mybutton{
+    margin-bottom: 10px;
+    background-color: rgb(252, 214, 120);
+    max-width: 230px;
+}
+.taskname{
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 18px;
+    margin:0px;
+    padding:0px;
+}
+.taskdate{
+    word-wrap: break-word;
+    font-size: 12px;
+    border-radius: 2px;
+    background-color: rgb(252, 168, 120);
+    padding-bottom: -40px;
+    margin-bottom:-10px;
+    padding:0px;
+}
+.taskstatus{
+    word-wrap: break-word;
+    font-size: 16px;
+    border-radius: 2px;
+    padding-top: -40px;
+    margin:0px;
+    padding:0px;
+}
+
+.createTask{
+    background-color: rgba(82, 115, 126, 0.726);
+}
+.createTask:hover{
+    background-color: rgba(136, 163, 172, 0.726);
+}
+
+.pop-up-container {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.pop-up {
+    background-color: #fff;
+    border-radius: .2rem;
+    padding: 1rem;
+    min-width: 40%;
+}
+
+.pop-up .btn-container {
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.myArea{
+    border: none;
+    outline:none;
+    -moz-appearance:none;
+    font-size: 24px;
+    margin-left: 30px;
+    max-height: 40px;
+}
+
+.myArea-descr{
+    margin-top: 0px;
+    font-size: 14px;
+    margin-left: 30px;
+    min-width: 500px;
+    min-height: 200px;
+    outline: 1px solid rgba(97, 69, 69, 0.3);
+    min-height: fit-content;
+}
+
+.myArea-title{
+    outline: 1px solid rgba(97, 69, 69, 0.3);
+    appearance: auto;
+    font-size: 20px;
+    min-width: 500px;
+}

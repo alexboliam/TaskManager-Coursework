@@ -27,7 +27,8 @@ namespace TaskManager.PL.Extentions
         {
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<IProjectService, ProjectService>();
-
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)

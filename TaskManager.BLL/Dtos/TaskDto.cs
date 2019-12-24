@@ -8,9 +8,12 @@ namespace TaskManager.BLL.Dtos
     {
         public Guid TaskId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+
         public virtual StatusDto Status { get; set; }
         public virtual EmployeeDto CreatedBy { get; set; }
         public DateTime Deadline { get; set; }
+        public virtual IEnumerable<EmployeeTaskDto> EmployeesOnTask { get; set; }
         public virtual IEnumerable<SubtaskDto> Subtasks { get; set; }
     }
 }

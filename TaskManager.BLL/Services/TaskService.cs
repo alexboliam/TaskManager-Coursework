@@ -36,8 +36,8 @@ namespace TaskManager.BLL.Services
             {
                 return false;
             }
-
-            project.Tasks.ToList().Add(newTask);
+            //project.Tasks.
+            //unit.Tasks.Create(newTask);
             unit.Save();
             return true;
         }
@@ -51,6 +51,7 @@ namespace TaskManager.BLL.Services
             }
 
             updTask.Name = task.Name;
+            updTask.Description = task.Description;
             updTask.Status = mapper.Map<Status>(task.Status);
             updTask.Deadline = task.Deadline;
 
@@ -174,7 +175,19 @@ namespace TaskManager.BLL.Services
             {
                 return null;
             }
-        } 
+        }
         #endregion
+
+        public IEnumerable<EmployeeTaskDto> GetWorkersByTaskId(Guid taskId)
+        {
+            var workers = unit.Tasks.FindByCondition(x => x.TaskId.Equals(taskId)).FirstOrDefault().EmployeesOnTask;
+            if (workers == null)
+            {
+                return null;
+            }
+
+            return mapper.Map<IEnumerable<EmployeeTaskDto>>(workers);
+        }
+
     }
 }

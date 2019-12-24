@@ -140,6 +140,28 @@ namespace TaskManager.PL.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [HttpGet("{taskId}/workers")]
+        public IActionResult GetWorkersByTaskId(Guid taskId)
+        {
+            try
+            {
+                var workers = taskService.GetWorkersByTaskId(taskId);
+
+                if (workers != null)
+                {
+                    return Ok(mapper.Map<IEnumerable<EmployeeTaskResponse>>(workers));
+                }
+                else
+                {
+                    return StatusCode(404, "Requested task was not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. " + ex.Message);
+            }
+        }
         #endregion
 
         #region Subtasks stuff

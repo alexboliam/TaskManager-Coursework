@@ -19,5 +19,7 @@ namespace TaskManager.BLL.Interfaces
         bool UpdateSubtask(SubtaskDto subtask);
         bool DeleteSubtask(SubtaskDto subtask);
 
+        IEnumerable<EmployeeTaskDto> GetWorkersByTaskId(Guid taskId);
+
     }
 }

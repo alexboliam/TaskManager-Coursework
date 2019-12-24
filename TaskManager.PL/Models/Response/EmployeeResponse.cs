@@ -9,7 +9,6 @@ namespace TaskManager.PL.Models
     {
         public Guid EmployeeId { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }
-        public virtual ICollection<EmployeeProjectResponse> AdminAtProjects { get; set; }
+
     }
 }

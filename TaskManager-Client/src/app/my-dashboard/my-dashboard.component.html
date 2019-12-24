@@ -1,0 +1,31 @@
+<div>
+    <nav class="navbar navbar-default fixed-top custom-nav">
+        <a class="navbar-brand mx-auto navbar-label" href="">Task Manager</a>
+    </nav>
+    <div class="container maindiv">
+        <div class="dashboards" style="overflow-x:auto">
+            <i class="fa fa-user fa-lg"></i>
+            <label class="proj-label">Created projects</label>
+            <div *ngIf="projectsList">
+                <div *ngFor="let proj of myProjectsList"
+                    class="tdAdmins">
+                    <button class="mybutton btn" (click)="goToProject(proj.projectId)">{{ proj.name }} {{status(proj.status)}}</button>
+                </div>
+                <div class="tdAdmins">
+                    <button class="mybutton myButton2 btn" (click)="createProject()"><i class="fa fa-plus fa-fw"></i></button>
+                </div>
+            </div>
+
+            <i class="fa fa-briefcase fa-lg"></i>
+            <label class="proj-label">In-work projects</label>
+            <div *ngIf="projectsList">
+
+                <div *ngFor="let proj of projectsList"
+                    class="tdAdmins">
+                    <button class="mybutton btn" (click)="goToProject(proj.projectId)"> <p class="projName">{{ proj.name }}</p> <br><hr><p class="status">{{status(proj.status)}}</p></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

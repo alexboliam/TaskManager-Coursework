@@ -1,0 +1,244 @@
+<div>
+    <nav class="navbar navbar-light" style="background-color: #6d13d3;">
+        <a class="navbar-brand mb-0 h1" style="color:aliceblue">
+            <img src="../../assets/icon.png" class="d-inline-block align-top" height="32px" width="32px"> Task Manager</a>
+    </nav>
+    <!-- Show/edit task pop-up -->
+    <div *ngIf="showMode==1" class="pop-up-container" (click)="onHideClick()" >
+        <div class="pop-up form-group"
+            (click)="onFormClick($event)" style="overflow: auto;">
+            <!-- Title-->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-font fa-lg" style="margin-top: 15px;"></i>
+                <textarea type="text" class="myArea"
+                    [(ngModel)]="shownTask.name"></textarea>
+            </div>
+            <hr>
+            <!-- Deadline -->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-calendar fa-lg" style="margin-top: 15px;"></i>
+                <div style="display: flex; flex-direction: column; background-color: white;">
+                    <label style="margin-left: 15px;margin-top: 15px; font-weight:bold; font-size: 18px;">Date of finishing</label><br />
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="shownTask.deadline" placeholder="Choose a deadline">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            </div>
+            <hr>
+            <!-- Description-->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-align-justify fa-lg" style="margin-top: 15px;"></i>
+                <div style="display: flex; flex-direction: column; background-color: white;">
+                <label style="margin-top: 10px; margin-left: 15px; font-weight:bold; font-size: 18px;">
+                    Description
+                </label><br />
+                <textarea type="text" class="myArea myArea-descr"
+                    [(ngModel)]="shownTask.description"></textarea>
+                </div>
+            </div>
+            <hr>
+            <!-- Status-->
+            <label id="example-radio-group-label">Task status: </label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="StatusCheckBox">
+                    <br/>
+                    <mat-radio-button class="example-radio-button" [value]="1">
+                        In progress
+                    </mat-radio-button>
+                    <mat-radio-button style="margin-left: 10px;" class="example-radio-button" [value]="2">
+                        Done
+                    </mat-radio-button>
+                </mat-radio-group>
+            <hr>
+            <!-- Workers-->
+            <div style="display: inline-flex; flex-direction: column; background-color: white;">
+                <p style="margin-top: 5px; margin-bottom: 5px; font-size: 14px; color:rgb(41, 35, 35)">
+                    Note: during adding/deleting workers to task, other changed and unsaved options will be dropped.
+                </p>
+                <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                    <i class="fa fa-user fa-lg" style="margin-top: 15px;"></i>
+                    <label style="margin-top: 10px; margin-left: 15px; font-weight:bold; font-size: 18px;">
+                        Workers on this task:
+                    </label>
+                    
+                </div>
+                <div *ngFor="let emp of shownTaskEmployees" style="display: flex; flex-direction: row; background-color: white;">
+                    <i class="fa fa-user-circle fa-fw" style="margin-top: 5px; margin-left: 5px;"></i>
+                    <p style="margin-left: 10px;">{{emp.employee.login}}</p>
+                    <button style="margin-left: 10px; max-height: 20px; font-size: 10px;padding-top: 2px;" class="btn btn-danger" (click)="deleteTaskMember(emp.employee.login)">Delete</button> 
+                </div>
+                <div style="background-color: white;">
+                    <input style="margin-top: 10px; min-width: 300px;" type="text" class = "form-control" name="newmemberlogin" [(ngModel)]="newmemberlogin" placeholder="login of new member">
+                    <button style="margin-top: 10px;" class="btn btn-primary" (click)="addTaskMember()">Add worker to task</button>
+                    <div *ngIf="!addMemberValid" style="text-decoration-color: rgb(209, 63, 63);">{{Error}}</div>
+                </div>
+            </div>
+            <hr>
+            <!-- Buttons-->
+            <br>
+            <div class="btn-container">
+                <button class="btn btn-primary"
+                    (click)="onOk()">Ok</button>
+                <button class="btn btn-secondary" (click)="onHideClick()">Back</button>
+            </div>
+        </div>
+    </div>
+    <!-- Create task pop-up -->
+    <div *ngIf="showMode==2" class="pop-up-container" (click)="onHideClick()">
+        <div class="pop-up form-group"
+            (click)="onFormClick($event)">
+            <!-- Title-->
+            <label style="margin-left: 15px;margin-top: 15px; font-weight:bold; font-size: 32px;">Title of task</label> <br>
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-font fa-lg" style="margin-top: 15px;"></i>
+                <input type="text" class="myArea myArea-title"
+                    [(ngModel)]="newTask.name" placeholder="Enter title of task">
+            </div>
+            <hr>
+            <!-- Deadline -->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-calendar fa-lg" style="margin-top: 15px;"></i>
+                <div style="display: flex; flex-direction: column; background-color: white;">
+                    <label style="margin-left: 15px;margin-top: 15px; font-weight:bold; font-size: 18px;">Date of finishing</label><br />
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="newTask.deadline" placeholder="Choose a deadline">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            </div>
+            <hr>
+            <!-- Description -->
+            <div style="display: inline-flex; flex-direction: row; background-color: white;">
+                <i class="fa fa-align-justify fa-lg" style="margin-top: 15px;"></i>
+                <div style="display: flex; flex-direction: column; background-color: white;">
+                <label style="margin-top: 10px; margin-left: 15px; font-weight:bold; font-size: 18px;">
+                    Description
+                </label><br />
+                <textarea type="text" class="myArea-descr"
+                    [(ngModel)]="newTask.description"></textarea>
+                </div>
+            </div>
+            <hr>
+            <p style="margin-top: 5px; margin-bottom: 5px; font-size: 16px; color:rgb(41, 35, 35)">Note: You can add workers to current task after creating it. New task can be found in "New" tasks list.</p>
+            <div *ngIf="!addMemberValid" style="text-decoration-color: rgb(209, 63, 63);">{{Error}}</div>
+            <!-- Buttons -->
+            <br>
+            <div class="btn-container">
+                <button class="btn btn-primary"
+                    (click)="onTaskCreate()">Create</button>
+                <button class="btn btn-secondary" (click)="onHideClick()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main dashboard layout -->
+    <div style="background-color: grey" style="width: 100%;">
+        <!-- Section with columns -->
+        <section class="tasksSection">
+            <!-- New column-->
+            <div class="taskColumn">
+                <div class="taskList">
+                    <h4 class="taskHeader">New</h4>
+                    <hr>
+                    <div *ngIf="createdTasks" class="bodylist">
+                        <div *ngFor="let task of createdTasks"
+                            class="taskfields">
+                            <button class="mybutton btn" (click)="openTask(task.taskId)">
+                                <p class="taskname">{{ task.name }}</p> 
+                                <br> 
+                                <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
+                                <br> 
+                                <p class="taskstatus">{{status(task.status)}}</p> 
+                            </button>
+                        </div>
+                    </div>
+                    <div class="taskfields">
+                        <button class="mybutton createTask btn" (click)="createTask()"><i class="fa fa-plus fa-fw"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- In progress column-->
+            <div class="taskColumn">
+                <div class="taskList">
+                    <h4 class="taskHeader">In progress</h4>
+                    <hr>
+                    <div *ngIf="progressTasks">
+                        <div *ngFor="let task of progressTasks"
+                            class="taskfields">
+                            <button class="mybutton btn" (click)="openTask(task.taskId)">
+                                <p class="taskname">{{ task.name }}</p> 
+                                <br> 
+                                <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
+                                <br> 
+                                <p class="taskstatus">{{status(task.status)}}</p> 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Done column-->
+            <div class="taskColumn">
+                <div class="taskList">
+                    <h4 class="taskHeader">Done</h4>
+                    <hr>
+                    <div *ngIf="doneTasks">
+                        <div *ngFor="let task of doneTasks" class="taskfields">
+                            <button class="mybutton btn" (click)="openTask(task.taskId)">
+                                <p class="taskname">{{ task.name }}</p> 
+                                <br> 
+                                <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
+                                <br> 
+                                <p class="taskstatus">{{status(task.status)}}</p> 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Overdue column-->
+            <div class="taskColumn">
+                <div class="taskList">
+                    <h4 class="taskHeader">Overdue</h4>
+                    <hr>
+                    <div *ngIf="overduedTasks">
+                        <div *ngFor="let task of overduedTasks"
+                            class="taskfields">
+                            <button class="mybutton btn" (click)="openTask(task.taskId)">
+                                <p class="taskname">{{ task.name }}</p> 
+                                <br> 
+                                <p class="taskdate">{{task.deadline | date: 'dd/MM/yyyy'}}</p> 
+                                <br> 
+                                <p class="taskstatus">{{status(task.status)}}</p> 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Team members column -->
+            <div style="display: inline-flex; flex-direction: column; background-color: #f5f5f5;">
+                <!-- Title-->
+                <div style="display: inline-flex; flex-direction: row; background-color: #f5f5f5;">
+                    <i class="fa fa-users fa-lg" style="margin-top: 15px;"></i>
+                    <label style="margin-top: 10px; margin-left: 15px; font-weight:bold; font-size: 18px; background-color: #f5f5f5;">
+                        Team on this project:
+                    </label>
+                </div>
+                <!-- Members -->
+                <div *ngFor="let emp of teamMembers" style="display: flex; flex-direction: row;">
+                    <i class="fa fa-user-circle fa-fw" style="margin-top: 5px; margin-left: 5px;"></i>
+                    <p style="margin-left: 10px;">{{emp.employee.login}}</p> 
+                    <button style="margin-left: 10px; max-height: 20px; font-size: 10px;padding-top: 2px;" class="btn btn-danger" (click)="deleteMember(emp.employee.login)">Delete</button>                     
+                </div>
+                <!-- Buttons -->
+                <div>
+                    <input style="margin-top: 10px; min-width: 300px;" type="text" class = "form-control" name="newmemberlogin" [(ngModel)]="newmemberlogin" placeholder="login of new member">
+                    <button style="margin-top: 10px;" class="btn btn-primary" (click)="addMember()">Add a team member</button>
+                    <div *ngIf="!addMemberValid" style="text-decoration-color: rgb(209, 63, 63);">{{Error}}</div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>

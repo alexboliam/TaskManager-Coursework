@@ -13,6 +13,8 @@ namespace TaskManager.DAL.Repositories
         private ITaskRepository tasks;
         private ISubtaskRepository subtasks;
         private ITeamRepository teams;
+        private IEmployeeTeamsRepository employeeTeams;
+        private IEmployeeTasksRepository employeeTasks;
 
         public UnitOfWork(TaskManagerContext context)
         {
@@ -22,6 +24,29 @@ namespace TaskManager.DAL.Repositories
         public void Save()
         {
             this.context.SaveChanges();
+        }
+
+        public IEmployeeTeamsRepository EmployeeTeams
+        {
+            get
+            {
+                if (employeeTeams == null)
+                {
+                    employeeTeams = new EmployeeTeamsRepository(context);
+                }
+                return employeeTeams;
+            }
+        }
+        public IEmployeeTasksRepository EmployeeTasks
+        {
+            get
+            {
+                if (employeeTasks == null)
+                {
+                    employeeTasks = new EmployeeTasksRepository(context);
+                }
+                return employeeTasks;
+            }
         }
 
         public IEmployeeRepository Employees

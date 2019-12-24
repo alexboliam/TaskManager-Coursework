@@ -1,0 +1,56 @@
+<div class="text-center">
+    <div *ngIf="state==0" class="sign-container">
+        <img src="../../assets/icon.png" class="mb-4 imgIcon" width="72" height="72" alt="Task Manager"> 
+        <div class="pop-up form-group">
+            <h1 class="h3 mb-3 font-weight-normal ">Please sign in</h1>
+            <br>
+            <input [(ngModel)]="login" type="text" id="inputLogin" class="form-control inputLogin" placeholder="Login" 
+            required autofocus 
+            autocomplete="off" 
+            name="login" 
+            [ngClass]="{ 'is-invalid' : invalid }"/>
+            <input [(ngModel)]="password" type="password" class="form-control inputPass" placeholder="Password"
+                    autocomplete="off"
+                    name="password"
+                    [ngClass]="{ 'is-invalid' : invalid }" />
+
+            <br>
+            <div class="btn-container signInBtn">
+                <button class="btn btn-primary signInBtn"
+                    (click)="onOk()">Sign in</button>
+                <button class="btn btn-secondary signInBtn"
+                    (click)="goRegister()">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="state==1" class="sign-container">
+        <img src="../../assets/icon.png" class="mb-4 imgIcon h1Label" width="72" height="72" alt="Task Manager"> 
+        <div class="pop-up form-group h1Label">
+            <h1 class="h3 mb-3 font-weight-normal h1Label">Registration</h1>
+            <br>
+            <input [(ngModel)]="login" type="text" id="inputLogin" class="form-control inputLogin" placeholder="Login"
+            autocomplete="off" 
+            name="login" 
+            [ngClass]="{ 'is-invalid' : invalidlogin }"/>
+            <input [(ngModel)]="password" type="password" class="form-control middlePass" placeholder="Password"
+                    autocomplete="off"
+                    name="password"
+                    [ngClass]="{ 'is-invalid' : invalidpass }" />
+            <input [(ngModel)]="confpassword" type="password" class="form-control inputPass" placeholder="Confirm password"
+                    autocomplete="off"
+                    name="confpassword"
+                    [ngClass]="{ 'is-invalid' : invalidpass }" />
+            <div *ngIf="invalidpass==true"><p>*passwords should be equal</p></div>
+
+            <br>
+            <div class="btn-container signInBtn">
+                <button class="btn btn-primary signInBtn"
+                    (click)="onOk()">Register</button>
+                <button class="btn btn-secondary signInBtn"
+                    (click)="goLogin()">Sign in</button>
+            </div>
+        </div>
+    </div>
+  
+</div>

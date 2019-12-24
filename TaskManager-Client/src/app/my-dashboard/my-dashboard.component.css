@@ -1,0 +1,82 @@
+div {
+    background-color: #f5f5f5;
+}
+.navbar-label{
+    margin-right: 47%;
+    text-align: center;
+    vertical-align: middle;
+    color: #f5f5f5;
+    font-size: 25px;
+    padding-top:0px;
+    font: 20 'Oleo Script';
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+.navbar-label:hover{
+    color: #cecece;
+}
+.imgIcon{
+    margin-left: 40%;
+    vertical-align: center;
+}
+.custom-nav{
+    background-color: #6d13d3;
+    max-height: 50px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+}
+
+.dashboards{
+    margin-top: 10%;
+    margin-left: 0;
+    display:flexbox;
+    flex-direction: column;
+    /* background-color: grey; */
+    width: 50%;
+    
+}
+.proj-label{
+    padding-left: 10px;
+    font-size: 20px;
+}
+.mybutton{
+    background-color: rgba(43, 202, 255, 0.726);
+    padding: 40px;
+    box-shadow: 0 2px 3px grey;
+    text-align: left;
+    border-radius: 10px;
+}
+.myButton2{
+    background-color: rgba(82, 115, 126, 0.726);
+}
+
+.mybutton:hover{
+    background-color: rgb(1, 155, 206);
+    padding: 42px;
+}
+.mybutton2:hover{
+    background-color: rgba(73, 98, 107, 0.726);
+    padding: 42px;
+}
+.tdAdmins{
+    width: fit-content;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.status{
+    padding-bottom: 0px;
+    margin-bottom: -30px;
+    text-align: center;
+    margin-top: -10px;
+    font-weight: normal;
+    color: rgba(16, 19, 20, 0.726);
+}
+.projName{
+    padding-bottom: 0px;
+    margin-bottom: -10px;
+    margin-top: 0px;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(16, 19, 20, 0.726);
+}

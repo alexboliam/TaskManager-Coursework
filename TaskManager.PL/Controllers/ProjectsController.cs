@@ -22,6 +22,28 @@ namespace TaskManager.PL.Controllers
             this.projectService = projectService;
         }
 
+        [HttpGet("{projectId}/team")]
+        public IActionResult GetTeamByProjectId(Guid projectId)
+        {
+            try
+            {
+                var team = projectService.GetTeamByProjectId(projectId);
+
+                if (team != null)
+                {
+                    return Ok(mapper.Map<TeamResponse>(team));
+                }
+                else
+                {
+                    return StatusCode(404, "Requested project was not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. " + ex.Message);
+            }
+        }
+
         [HttpGet("{employeeLogin}")]
         public IActionResult GetProjectsByEmployeeLogin(string employeeLogin)
         {
@@ -43,5 +65,28 @@ namespace TaskManager.PL.Controllers
                 return StatusCode(500, "Internal server error. " + ex.Message);
             }
         }
+
+        [HttpGet("byid/{projectId}")]
+        public IActionResult GetProjectsByProjectId(Guid projectId)
+        {
+            try
+            {
+                var project = projectService.GetProjectByProjectId(projectId);
+
+                if (project != null)
+                {
+                    return Ok(mapper.Map<ProjectResponse>(project));
+                }
+                else
+                {
+                    return StatusCode(404, "Requested project was not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. " + ex.Message);
+            }
+        }
+        
     }
 }
