@@ -209,7 +209,13 @@ export class ProjectBoardComponent implements OnInit {
   public onTaskCreate() {
     this.newTask.status = 0;
     this.newTask.loginOfCreatedBy = "test_login"; // TODO: change to localstorage
-
+    let name = this.newTask.name;
+    if(name.trim() == "")
+    {
+      this.Error = "Name cannot be empty.";
+      this.addMemberValid = false;
+      return;
+    }
     this.httpClient.post<Task>('api/tasks/project/' + this.route.snapshot.paramMap.get('id'), this.newTask)
         .subscribe(scss=>{
           this.load(this.route.snapshot.paramMap.get('id'));

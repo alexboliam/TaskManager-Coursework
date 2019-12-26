@@ -15,6 +15,11 @@ import { MatRadioModule, MatCommonModule,
   MAT_DATE_FORMATS,
   DateAdapter} from '@angular/material';
 import { MomentDateAdapter, MatMomentDateModule, MAT_MOMENT_DATE_FORMATS, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -35,7 +40,14 @@ import { MomentDateAdapter, MatMomentDateModule, MAT_MOMENT_DATE_FORMATS, MAT_MO
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:60359"],
+        blacklistedRoutes: []
+      }
+    })
   ],
   providers: [{ provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } } ],
   bootstrap: [AppComponent]

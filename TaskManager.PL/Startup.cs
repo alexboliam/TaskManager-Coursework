@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -12,7 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using TaskManager.DAL;
+using TaskManager.PL.Auth;
 using TaskManager.PL.Extentions;
 
 namespace TaskManager.PL
@@ -34,6 +38,27 @@ namespace TaskManager.PL
             services.ConfigureBLLServices();
             //services.ConfigureSwagger();
 
+            services.AddAuthentication(opt => {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = "http://localhost:60359",
+                    ValidAudience = "http://localhost:60359",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                };
+            });
+
+
+
             services.ConfigureCors();
             services.ConfigureIISIntegration();
 
@@ -54,10 +79,14 @@ namespace TaskManager.PL
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 
-
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             //app.UseSwagger();
             //app.UseSwaggerUI(c =>
@@ -66,6 +95,8 @@ namespace TaskManager.PL
             //    c.RoutePrefix = string.Empty;
             //});
 
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseCors("CorsPolicy");
 
@@ -76,8 +107,7 @@ namespace TaskManager.PL
 
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
